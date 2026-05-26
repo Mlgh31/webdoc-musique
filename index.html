@@ -337,7 +337,7 @@
 <!-- TOPBAR -->
 <header class="topbar">
   <div class="topbar-left"><img src="https://z-cdn-media.chatglm.cn/files/266cae4e-10f1-4fa8-8546-dffb115b8d10.png?auth_key=1879269373-5475847e07b246deb3c1c9cef463e35d-0-b7c314ace2d739fdc844ecfce5120d2f" alt="Université de Toulouse" class="topbar-logo"><div class="topbar-sep"></div><div><div class="topbar-title">Webdoc · IN2C 2026</div><div class="topbar-team">Robic · Guissouma · Louguemihi</div></div></div>
-  <div style="display:flex;align-items:center;gap:28px"><span id="topbar-visitor"></span><nav class="topbar-nav"><a href="#projet">Projet</a><a href="#quiz">Quiz</a><a href="#donnees">Données</a><a href="#interview">Interview</a><a href="#equipe">Équipe</a></nav></div>
+  <div style="display:flex;align-items:center;gap:28px"><span id="topbar-visitor"></span><nav class="topbar-nav"><a href="#projet">Projet</a><a href="#quiz">Quiz</a><a href="#donnees">Données</a><a href="#interview">Article</a><a href="#equipe">Équipe</a></nav></div>
 </header>
 
 <!-- HERO -->
@@ -449,23 +449,11 @@ L'avenir de l'écoute réside peut-être dans un équilibre : utiliser l'algorit
 
 <div class="divider"></div>
 
-<section id="profil" style="background:var(--bg2)">
-  <div class="section-label">Votre profil</div>
-  <h2 class="section-h2 animated">Qui êtes-vous en tant qu'auditeur·rice ?</h2>
-  <p style="color:var(--grey);margin-bottom:36px;font-size:16px" class="animated">3 questions pour révéler votre profil d'écoute.</p>
-  <div class="quiz-block animated"><div class="quiz-q">Comment découvrez-vous de la musique ?</div><div class="quiz-options"><div class="quiz-opt" onclick="scoreQ(this,1,'algo')"> Via les recommandations</div><div class="quiz-opt" onclick="scoreQ(this,1,'social')"> Via des amis / réseaux</div><div class="quiz-opt" onclick="scoreQ(this,1,'active')"> En cherchant activement</div><div class="quiz-opt" onclick="scoreQ(this,1,'random')"> Au hasard</div></div></div>
-  <div class="quiz-block animated" style="margin-top:24px"><div class="quiz-q">Vous écoutez une chanson en boucle ?</div><div class="quiz-options"><div class="quiz-opt" onclick="scoreQ(this,2,'loop')"> Tout le temps</div><div class="quiz-opt" onclick="scoreQ(this,2,'sometimes')"> Parfois</div><div class="quiz-opt" onclick="scoreQ(this,2,'never')"> Jamais</div></div></div>
-  <div class="quiz-block animated" style="margin-top:24px"><div class="quiz-q">Face à une playlist IA ?</div><div class="quiz-options"><div class="quiz-opt" onclick="scoreQ(this,3,'trust')"> Confiance totale</div><div class="quiz-opt" onclick="scoreQ(this,3,'ok')"> Ça dépend</div><div class="quiz-opt" onclick="scoreQ(this,3,'suspicious')"> Méfiance</div><div class="quiz-opt" onclick="scoreQ(this,3,'ignore')"> Jamais</div></div></div>
-  <div class="profile-reveal" id="profile-reveal"><div class="profile-emoji" id="profile-emoji"></div><div class="profile-title" id="profile-title">Votre profil</div><div class="profile-desc" id="profile-desc"></div></div>
-</section>
-
-<div class="divider"></div>
-
 <section id="equipe">
   <div class="section-label">L'équipe</div>
   <h2 class="section-h2 animated">Qui Sommes-Nous ?</h2>
   <div class="team-grid animated">
-    <div class="team-card"><div class="team-name">Erij Guissouma</div><div class="team-role">Reportage, interviews & analyse des données.</div><div class="team-tag">REPORTAGE · DATA</div><!--<button class="taste-btn" onclick="revealTaste(this)"> Ses goûts musicaux</button>--><div class="taste-reveal"><div class="taste-emoji"></div><div class="taste-genres">Pop · rock  </div><div class="taste-detail">"the world without music is nothing."</div></div></div>
+    <div class="team-card"><div class="team-name">Erij Guissouma</div><div class="team-role">article, recherche & analyse des données.</div><div class="team-tag">ARTICLE · DATA</div><!--<button class="taste-btn" onclick="revealTaste(this)"> Ses goûts musicaux</button>--><div class="taste-reveal"><div class="taste-emoji"></div><div class="taste-genres">Pop · rock  </div><div class="taste-detail">"the world without music is nothing."</div></div></div>
     <div class="team-card"><div class="team-name">Axel Robic</div><div class="team-role">Communication & recherche documentaire stratégique.</div><div class="team-tag">COM · DOCS</div><!--<button class="taste-btn" onclick="revealTaste(this)"> Ses goûts musicaux</button>--><div class="taste-reveal"><div class="taste-emoji"></div><div class="taste-genres">Rock Indé · Électro · vocaloÏd</div><div class="taste-detail">"si c'est de la bonne musique c'est ok."</div></div></div>
     <div class="team-card"><div class="team-name">Mohamed Louguemihi</div><div class="team-role">Organisation, composition & direction artistique.</div><div class="team-tag">DESIGN · ORGA</div><!--<button class="taste-btn" onclick="revealTaste(this)"> Ses goûts musicaux</button>--><div class="taste-reveal"><div class="taste-emoji"></div><div class="taste-genres">Rap FR · Afrobeats · Reggaeton</div><div class="taste-detail">"Le streaming a ouvert les frontières ! Mais je vérifie ce qu'ils me cachent."</div></div></div>
   </div>
