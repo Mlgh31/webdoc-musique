@@ -11,8 +11,7 @@
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--white);font-family:var(--font-body);overflow-x:hidden}
 
-  .scroll-progress{position:fixed;top:0;left:0;width:0%;height:4px;background:var(--green);z-index:999999;transition:width 0.1s}
-
+  /* ── CELEBRATION OVERLAY ── */
   #celebration-overlay{position:fixed;inset:0;z-index:10002;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .5s cubic-bezier(.22,1,.36,1)}
   #celebration-overlay.show{opacity:1}
   .celeb-card{background:rgba(26,26,34,0.95);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:20px;padding:48px 56px;text-align:center;max-width:480px;transform:translateY(20px) scale(.95);transition:transform .5s cubic-bezier(.22,1,.36,1)}
@@ -26,6 +25,7 @@
   .celeb-score{font-family:var(--font-mono);font-size:13px;color:var(--green);letter-spacing:.1em;margin-top:12px}
   .celeb-score span{font-family:var(--font-head);font-size:22px;font-weight:800}
 
+  /* ── TRANSITION FLUIDE ── */
   #explore-transition{position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;background:var(--green);opacity:0;pointer-events:none}
   #explore-transition.enter{animation:transIn .55s cubic-bezier(.22,1,.36,1) forwards}
   #explore-transition.exit{animation:transOut .55s cubic-bezier(.22,1,.36,1) forwards}
@@ -94,24 +94,12 @@
   .animated{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
   .animated.in{opacity:1;transform:translateY(0)}
 
-  .bgm-btn{position:fixed;bottom:28px;left:28px;z-index:200;background:var(--card);border:1px solid var(--border);color:var(--green);padding:14px 20px;border-radius:50px;font-family:var(--font-mono);font-size:11px;cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,0.4);transition:all 0.3s;display:none;align-items:center;gap:8px}
-  .bgm-btn:hover{background:var(--green-glow)}
-  .reset-btn-container{text-align:center;padding:60px 20px;background:var(--bg2)}
-  .btn-reset{background:rgba(165,70,86,0.1);border:1px solid var(--red);color:var(--red);transition:all .2s;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;border-radius:4px;cursor:pointer}
-  .btn-reset:hover{background:rgba(165,70,86,0.2);transform:scale(1.02);box-shadow:0 0 20px rgba(165,70,86,0.2)}
-
-  .score-badge{position:fixed;bottom:28px;right:28px;z-index:200;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,0.4);transition:all .3s;opacity:0;transform:translateY(20px)}
+  .score-badge{position:fixed;bottom:28px;right:28px;z-index:200;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:0px 0px;display:flex;align-items:center;gap:0px;box-shadow:0 8px 32px rgba(0,0,0,0.4);transition:all .3s;opacity:0;transform:translateY(20px)}
   .score-badge.visible{opacity:1;transform:translateY(0)}
-  .score-badge .score-fire{font-size:22px;display:inline-block;transform-origin:bottom center;transition:all .3s}
+  .score-badge .score-fire{font-size:22px}
   .score-badge .score-text{font-family:var(--font-mono);font-size:10px;color:var(--grey);letter-spacing:.1em}
   .score-badge .score-val{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--green)}
   @keyframes scorePop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
-  @keyframes fs1{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.1) rotate(3deg)}}
-  @keyframes fs2{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.15) rotate(-4deg)}75%{transform:scale(1.15) rotate(4deg)}}
-  @keyframes fs3{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.25) rotate(-6deg)}75%{transform:scale(1.25) rotate(6deg)}}
-  .score-fire.lvl-1{animation:fs1 .8s infinite ease-in-out}
-  .score-fire.lvl-2{animation:fs2 .5s infinite ease-in-out;filter:drop-shadow(0 0 6px var(--green))}
-  .score-fire.lvl-3{animation:fs3 .3s infinite ease-in-out;filter:drop-shadow(0 0 10px var(--red))}
   .score-badge.pop{animation:scorePop .4s}
 
   #toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);z-index:9998;background:var(--green);color:var(--bg2);padding:14px 28px;border-radius:8px;font-family:var(--font-mono);font-size:13px;font-weight:700;transition:transform .4s;pointer-events:none;white-space:nowrap}
@@ -155,8 +143,9 @@
   .quiz-card-feedback.bad{color:var(--red)}
 
   .devinette-card{background:linear-gradient(135deg,rgba(141,184,36,0.06),rgba(141,184,36,0.02));border:1px solid rgba(141,184,36,0.18);border-radius:14px;padding:36px;margin-bottom:36px;position:relative;overflow:hidden}
+  .devinette-card::after{content:'?';position:absolute;right:-20px;top:-30px;font-family:var(--font-head);font-size:140px;font-weight:800;color:rgba(141,184,36,0.05);pointer-events:none}
   .devinette-label{font-family:var(--font-mono);font-size:10px;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-  .devinette-label::before{content:'// '}
+  .devinette-label::before{content:''}
   .devinette-question{font-family:var(--font-head);font-size:22px;font-weight:700;margin-bottom:24px;line-height:1.3}
   .devinette-options{display:flex;gap:12px;flex-wrap:wrap}
   .dev-btn{padding:14px 24px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);color:var(--white);font-family:var(--font-mono);font-size:14px;cursor:pointer;transition:all .25s}
@@ -191,9 +180,9 @@
   #genre-result{margin-top:20px;font-family:var(--font-mono);font-size:13px;color:var(--grey);display:none;line-height:1.7}
   #genre-result strong{color:var(--green)}
 
-  .poll-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.03);padding:10px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.05)}
-  .poll-row:hover{opacity:.85;border-color:var(--green)}
-  .poll-label{font-size:15px;width:130px;font-family:var(--font-mono);}
+  .poll-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;cursor:pointer;transition:all .2s}
+  .poll-row:hover{opacity:.85}
+  .poll-label{font-size:15px;width:130px}
   .poll-voted{font-family:var(--font-mono);font-size:11px;color:var(--green);margin-top:12px;display:none}
 
   .anecdote-strip{display:flex;gap:20px;overflow-x:auto;padding-bottom:12px;margin-top:40px;scroll-snap-type:x mandatory}
@@ -222,6 +211,7 @@
   .prob-card:hover{transform:translateY(-4px)}
   .prob-card.question{border-color:var(--red)}
   .prob-card.objectif{border-color:var(--green)}
+  .prob-icon{font-size:28px;margin-bottom:20px}
   .prob-card h3{font-family:var(--font-head);font-size:22px;font-weight:700;margin-bottom:14px}
   .prob-card p{color:var(--grey);line-height:1.7;font-size:16px}
   .prob-card p strong{color:var(--white);font-weight:600}
@@ -256,20 +246,46 @@
   .sources-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .source-card{background:var(--card);border-radius:12px;padding:36px 28px;border-top:3px solid var(--green);transition:transform .3s}
   .source-card:hover{transform:translateY(-4px)}
+  .source-icon{font-size:32px;margin-bottom:16px}
   .source-card h3{font-family:var(--font-head);font-size:20px;font-weight:700;margin-bottom:10px}
   .source-card p{color:var(--grey);font-size:14px;line-height:1.65}
 
-  .article-section{background:var(--bg2)}
-  .article-layout{max-width:900px;margin:0 auto;background:var(--card);border-radius:12px;padding:56px;border-top:3px solid var(--green);box-shadow:0 0 60px rgba(141,184,36,.05)}
-  .article-title{font-family:var(--font-head);font-size:clamp(24px,4vw,36px);font-weight:800;margin-bottom:24px;line-height:1.2;text-align:center;color:var(--white);}
-  .article-author{text-align:center;font-family:var(--font-mono);font-size:12px;color:var(--grey);margin-bottom:48px;letter-spacing:0.1em;text-transform:uppercase;}
-  .article-author span{color:var(--green);}
-  .article-h3{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--green);margin-top:48px;margin-bottom:16px}
-  .article-p{color:var(--grey);font-size:16px;line-height:1.8;margin-bottom:16px}
-  .article-p strong{color:var(--white);font-weight:600;}
+  .interview-section{background:var(--bg2)}
+  .interview-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .interview-player{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 0 60px rgba(141,184,36,.10)}
+  .player-header{background:rgba(141,184,36,.08);padding:14px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+  .player-dot{width:10px;height:10px;border-radius:50%}
+  .player-dot.r{background:#ff5f57}.player-dot.y{background:#febc2e}.player-dot.g{background:#28c840}
+  .player-label{font-family:var(--font-mono);font-size:11px;color:var(--grey);margin-left:6px}
+  .video-embed{position:relative;width:100%;padding-bottom:56.25%;background:#0a0a10}
+  .video-embed iframe,.video-embed video{position:absolute;inset:0;width:100%;height:100%;border:none}
+  .video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#0a0a10}
+  .play-btn{width:72px;height:72px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 0 32px rgba(141,184,36,.4)}
+  .play-btn:hover{transform:scale(1.08);box-shadow:0 0 48px rgba(141,184,36,.6)}
+  .play-btn svg{fill:var(--bg2);width:28px;height:28px;transform:translateX(3px)}
+  .video-placeholder p{font-family:var(--font-mono);font-size:12px;color:var(--grey);letter-spacing:.1em}
+  .player-footer{padding:16px 20px;display:flex;align-items:center;gap:14px;border-top:1px solid var(--border)}
+  .progress-bar-vid{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;cursor:pointer}
+  .progress-fill{width:0%;height:100%;background:var(--green);border-radius:2px}
+  .time-label{font-family:var(--font-mono);font-size:10px;color:var(--grey)}
+  .interview-info h3{font-family:var(--font-head);font-size:28px;font-weight:700;margin-bottom:14px}
+  .interview-info p{color:var(--grey);line-height:1.75;font-size:16px;margin-bottom:20px}
+  .interview-meta{display:flex;flex-direction:column;gap:10px}
+  .meta-row{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;color:var(--grey)}
+  .meta-row .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .meta-row span{color:var(--white)}
+  #url-input{width:100%;margin-top:14px;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:var(--white);font-family:var(--font-mono);font-size:12px;outline:none;transition:border-color .2s}
+  #url-input:focus{border-color:var(--green)}
+  #url-input::placeholder{color:var(--grey)}
+  #load-btn{margin-top:10px;width:100%;background:var(--green);color:var(--bg2);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;padding:12px;border:none;border-radius:6px;cursor:pointer;text-transform:uppercase;transition:background .2s}
+  #load-btn:hover{background:#9fcf27}
+  .upload-zone{margin-top:14px;border:2px dashed rgba(141,184,36,.3);border-radius:10px;padding:24px;text-align:center;font-family:var(--font-mono);font-size:12px;color:var(--grey);cursor:pointer;transition:border-color .2s,background .2s}
+  .upload-zone:hover{border-color:var(--green);background:var(--green-glow)}
+  .upload-zone .upload-icon{font-size:24px;margin-bottom:8px}
 
   .profile-reveal{background:linear-gradient(135deg,rgba(141,184,36,0.12),rgba(141,184,36,0.03));border:1px solid rgba(141,184,36,0.25);border-radius:16px;padding:48px;text-align:center;margin-top:36px;display:none}
   .profile-reveal.show{display:block;animation:fadeUp .7s forwards}
+  .profile-emoji{font-size:60px;margin-bottom:16px;animation:bounceIn .6s}
   .profile-title{font-family:var(--font-head);font-size:28px;font-weight:800;color:var(--green);margin-bottom:12px}
   .profile-desc{color:var(--grey);font-size:16px;line-height:1.7;max-width:500px;margin:0 auto}
 
@@ -283,6 +299,7 @@
   .taste-btn:hover{background:rgba(165,70,86,0.2);border-color:var(--red)}
   .taste-reveal{margin-top:14px;border-radius:8px;background:rgba(165,70,86,0.06);border:1px solid rgba(165,70,86,0.15);max-height:0;overflow:hidden;opacity:0;transition:max-height .5s cubic-bezier(.2,.8,.2,1),opacity .4s,padding .4s;padding:0 16px}
   .taste-reveal.open{max-height:200px;opacity:1;padding:16px}
+  .taste-reveal .taste-emoji{font-size:28px;margin-bottom:8px}
   .taste-reveal .taste-genres{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--red);margin-bottom:4px}
   .taste-reveal .taste-detail{font-size:13px;color:var(--grey);line-height:1.5}
 
@@ -291,27 +308,23 @@
   .footer-left .project-name{font-size:14px;color:var(--white);font-weight:700;font-family:var(--font-head);margin-bottom:6px}
   .footer-logo{height:24px;object-fit:contain;opacity:.4}
 
-  @media(max-width:900px){section{padding:60px 24px}.hero{padding:100px 24px 60px}.prob-grid,.team-grid,.data-grid,.sources-grid,.article-layout,.quiz-grid{grid-template-columns:1fr}.topbar-nav{display:none}footer{padding:40px 24px}.devinette-options{flex-direction:column}.slider-dev{max-width:100%}.article-layout{padding:32px 24px;}}
+  @media(max-width:900px){section{padding:60px 24px}.hero{padding:100px 24px 60px}.prob-grid,.team-grid,.data-grid,.sources-grid,.interview-layout,.quiz-grid{grid-template-columns:1fr}.topbar-nav{display:none}footer{padding:40px 24px}.devinette-options{flex-direction:column}.slider-dev{max-width:100%}}
 </style>
 </head>
 <body>
 
-<div id="scrollBar" class="scroll-progress"></div>
-
-<button id="bgmToggle" class="bgm-btn" onclick="toggleBgm()">
-  <span id="bgmIcon">🔊</span> Couper le son
-</button>
-
 <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
-<div id="toast"></div>
-<div class="score-badge" id="scoreBadge"><div class="score-fire">🔥</div><div><div class="score-text">SCORE</div><div class="score-val"><span id="scoreVal">0</span>/<span id="scoreMax">7</span></div></div></div>
 
-<div id="celebration-overlay"><div class="celeb-card"><div class="celeb-emoji" id="celebEmoji">🏆</div><div class="celeb-title" id="celebTitle">Bravo !</div><div class="celeb-desc" id="celebDesc"></div><div class="celeb-score">Score final : <span id="celebScore">0</span>/7</div></div></div>
+<div class="score-badge" id="scoreBadge"><div class="score-fire"></div><img src=".\logo prjet etudiant.avif" width=80px></div>
 
+<!-- CELEBRATION -->
+<div id="celebration-overlay"><div class="celeb-card"><div class="celeb-emoji" id="celebEmoji"></div><div class="celeb-title" id="celebTitle">Bravo !</div><div class="celeb-desc" id="celebDesc"></div><div class="celeb-score">Score final : <span id="celebScore">0</span>/7</div></div></div>
+
+<!-- WELCOME -->
 <div id="welcome-overlay">
   <div class="welcome-grid-bg"></div><div class="welcome-glow"></div><div class="welcome-glow2"></div>
   <div class="welcome-content">
-    <div class="welcome-tag">Webdoc · IN2C 2026 — Bienvenue</div>
+    <div class="welcome-tag">// Webdoc · IN2C 2026 — Bienvenue</div>
     <h1 class="welcome-h">Musique &amp; Technologie :<br><span class="acc">Qui décide vraiment ?</span></h1>
     <p class="welcome-sub">Ce webdoc est interactif. Pour personnaliser votre expérience, dites-nous comment vous appeler — puis plongez dans l'exploration !</p>
     <input class="welcome-input" id="visitor-name" placeholder="Votre prénom ou pseudo..." maxlength="30">
@@ -321,139 +334,40 @@
   </div>
 </div>
 
+<!-- TOPBAR -->
 <header class="topbar">
   <div class="topbar-left"><img src="https://z-cdn-media.chatglm.cn/files/266cae4e-10f1-4fa8-8546-dffb115b8d10.png?auth_key=1879269373-5475847e07b246deb3c1c9cef463e35d-0-b7c314ace2d739fdc844ecfce5120d2f" alt="Université de Toulouse" class="topbar-logo"><div class="topbar-sep"></div><div><div class="topbar-title">Webdoc · IN2C 2026</div><div class="topbar-team">Robic · Guissouma · Louguemihi</div></div></div>
-  <div style="display:flex;align-items:center;gap:28px"><span id="topbar-visitor"></span><nav class="topbar-nav"><a href="#projet">Projet</a><a href="#quiz">Quiz</a><a href="#donnees">Données</a><a href="#article">Article</a><a href="#equipe">Équipe</a></nav></div>
+  <div style="display:flex;align-items:center;gap:28px"><span id="topbar-visitor"></span><nav class="topbar-nav"><a href="#projet">Projet</a><a href="#quiz">Quiz</a><a href="#donnees">Données</a><a href="#interview">Article</a><a href="#equipe">Équipe</a></nav></div>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="accueil">
   <div class="hero-grid-bg"></div><div class="hero-glow"></div><div class="hero-glow2"></div>
-  <div class="hero-eyebrow">Bilan Intermédiaire · Projet Webdoc · Avril 2026 <span> Université de Toulouse</span></div>
+  <div class="hero-eyebrow">Bilan Intermédiaire · Projet Webdoc · Avril 2026 <span>// Université de Toulouse</span></div>
   <h1 class="hero-h1">Musique &amp; Technologie :<br><span class="accent">Qui décide vraiment ?</span></h1>
   <p class="hero-sub">Une exploration interactive de la transformation de l'industrie musicale sous l'impulsion des algorithmes, du streaming et des plateformes numériques.</p>
   <div id="hero-greeting" class="hero-greeting"></div>
-  <div class="hero-cta"><a href="#article" class="btn btn-outline">📝 Lire l'article</a></div>
+  <div class="hero-cta"><a href="#interview" class="btn btn-outline"> Voir l'article</a></div>
   <div class="hero-scroll">Défiler pour explorer</div>
 </section>
 
 <div class="divider"></div>
 
+<!-- PROBLEMATIQUE -->
 <section id="projet">
   <div class="section-label">Problématique &amp; enjeux</div>
   <h2 class="section-h2 animated">La Question au Cœur du Projet</h2>
   <div class="prob-grid animated">
-    <div class="prob-card question"><h3>La Question Centrale</h3><p>La technologie a-t-elle rendu la musique plus <strong>accessible</strong> ou plus <strong>contrôlée</strong> par les algorithmes ? Du passage du support physique au streaming massif, les outils numériques ne se contentent plus de distribuer la musique : ils la formatent. Comment ces plateformes influencent-elles la durée des morceaux, la structure des refrains et surtout, votre libre arbitre en tant qu'auditeur ?</p></div>
-    <div class="prob-card objectif"><h3>Notre Objectif</h3><p>Démocratiser la compréhension des mécanismes de recommandation et <strong>sensibiliser l'utilisateur</strong> à son autonomie d'écoute. Notre webdoc explore la transformation profonde de l'industrie musicale sous l'impulsion des avancées technologiques, pour vous permettre de reprendre le contrôle sur vos playlists face à des algorithmes de plus en plus prédictifs.</p></div>
+    <div class="prob-card question"><div class="prob-icon"></div><h3>La Question Centrale</h3><p>La technologie a-t-elle rendu la musique plus <strong>accessible</strong> ou plus <strong>contrôlée</strong> par les algorithmes ? Du passage du physique au streaming massif, comment les outils numériques ont-ils redéfini la création, la distribution et surtout la consommation de la musique aujourd'hui ?</p></div>
+    <div class="prob-card objectif"><div class="prob-icon"></div><h3>Notre Objectif</h3><p>Démocratiser la compréhension des mécanismes de recommandation et <strong>sensibiliser l'utilisateur</strong> à son autonomie d'écoute. Notre webdoc explore la transformation profonde de l'industrie musicale sous l'impulsion des avancées technologiques.</p></div>
   </div>
-  <div class="quiz-block animated"><div class="quiz-tag">Question pour vous</div><div class="quiz-q">Selon vous, la technologie a-t-elle rendu la musique plus accessible… ou plus contrôlée ?</div><div class="quiz-options" id="opinion-opts"><div class="quiz-opt" onclick="pickOpinion(this,'access')">Plus accessible</div><div class="quiz-opt" onclick="pickOpinion(this,'ctrl')">Plus contrôlée</div><div class="quiz-opt" onclick="pickOpinion(this,'both')">Les deux à la fois</div><div class="quiz-opt" onclick="pickOpinion(this,'none')">Je ne sais pas encore</div></div><div class="quiz-feedback" id="opinion-fb"></div></div>
-  <div class="quiz-block animated" style="margin-top:24px"><div class="quiz-tag">Vos goûts musicaux</div><div class="quiz-q">Quels genres écoutez-vous le plus ? <span style="color:var(--grey);font-size:16px;font-weight:400">(Sélectionnez tout ce qui vous parle)</span></div><div class="genre-cloud" id="genre-cloud"><div class="genre-pill" onclick="toggleGenre(this,'Pop')">Pop</div><div class="genre-pill" onclick="toggleGenre(this,'Rock')">Rock</div><div class="genre-pill" onclick="toggleGenre(this,'Jazz')">Jazz</div><div class="genre-pill" onclick="toggleGenre(this,'Classique')">Classique</div><div class="genre-pill" onclick="toggleGenre(this,'Hip-Hop')">Hip-Hop</div><div class="genre-pill" onclick="toggleGenre(this,'Électro')">Électro</div><div class="genre-pill" onclick="toggleGenre(this,'R&B')">R&B</div><div class="genre-pill" onclick="toggleGenre(this,'Metal')">Metal</div><div class="genre-pill" onclick="toggleGenre(this,'Folk')">Folk</div><div class="genre-pill" onclick="toggleGenre(this,'Reggae')">Reggae</div><div class="genre-pill" onclick="toggleGenre(this,'K-Pop')">K-Pop</div><div class="genre-pill" onclick="toggleGenre(this,'Variété française')">Variété fr.</div></div><div id="genre-result"></div></div>
+  <div class="quiz-block animated"><div class="quiz-tag"><!--// Question pour vous--></div><div class="quiz-q">Selon vous, la technologie a-t-elle rendu la musique plus accessible… ou plus contrôlée ?</div><div class="quiz-options" id="opinion-opts"><div class="quiz-opt" onclick="pickOpinion(this,'access')"> Plus accessible</div><div class="quiz-opt" onclick="pickOpinion(this,'ctrl')"> Plus contrôlée</div><div class="quiz-opt" onclick="pickOpinion(this,'both')"> Les deux à la fois</div><div class="quiz-opt" onclick="pickOpinion(this,'none')"> Je ne sais pas encore</div></div><div class="quiz-feedback" id="opinion-fb"></div></div>
+  <div class="quiz-block animated" style="margin-top:24px"><div class="quiz-tag"><!--// Vos goûts musicaux--></div><div class="quiz-q">Quels genres écoutez-vous le plus ? <span style="color:var(--grey);font-size:16px;font-weight:400">(Sélectionnez tout ce qui vous parle)</span></div><div class="genre-cloud" id="genre-cloud"><div class="genre-pill" onclick="toggleGenre(this,'Pop')"> Pop</div><div class="genre-pill" onclick="toggleGenre(this,'Rock')"> Rock</div><div class="genre-pill" onclick="toggleGenre(this,'Jazz')"> Jazz</div><div class="genre-pill" onclick="toggleGenre(this,'Classique')"> Classique</div><div class="genre-pill" onclick="toggleGenre(this,'Hip-Hop')"> Hip-Hop</div><div class="genre-pill" onclick="toggleGenre(this,'Électro')"> Électro</div><div class="genre-pill" onclick="toggleGenre(this,'R&B')"> R&amp;B</div><div class="genre-pill" onclick="toggleGenre(this,'Metal')"> Metal</div><div class="genre-pill" onclick="toggleGenre(this,'Folk')"> Folk</div><div class="genre-pill" onclick="toggleGenre(this,'Reggae')"> Reggae</div><div class="genre-pill" onclick="toggleGenre(this,'K-Pop')"> K-Pop</div><div class="genre-pill" onclick="toggleGenre(this,'Variété française')"> Variété fr.</div></div><div id="genre-result"></div></div>
 </section>
 
 <div class="divider"></div>
 
-<section class="data-section" id="donnees">
-  <div class="section-label">Données &amp; Recherche</div>
-  <h2 class="section-h2 animated">L'Industrie en Chiffres</h2>
-  <div class="data-grid">
-    <div class="animated">
-      <div class="devinette-card" id="dev1"><div class="devinette-label">Devinette</div><div class="devinette-question">En 2014, les revenus mondiaux ont touché le fond. Devinez le montant en milliards de $ :</div><div class="devinette-options"><button class="dev-btn" onclick="devChoice('dev1','8,2',this)">8,2 $B</button><button class="dev-btn" onclick="devChoice('dev1','13,1',this)">13,1 $B</button><button class="dev-btn" onclick="devChoice('dev1','18,5',this)">18,5 $B</button><button class="dev-btn" onclick="devChoice('dev1','22,2',this)">22,2 $B</button></div><div class="dev-result" id="dev1result"></div></div>
-      <div style="position:relative"><div class="lock-overlay" id="lock1"><div class="lock-icon">🔒</div><div class="lock-text">Répondez à la devinette pour débloquer</div></div><div class="chart-locked" id="chart1"><p class="chart-title">ÉVOLUTION DES REVENUS MONDIAUX (MILLIARDS USD) — IFPI 2026</p><div class="bar-row"><div class="bar-label">1999 — Pic CD <span>22,2 $B</span></div><div class="bar-track"><div class="bar-fill peak" data-width="70%">22,2 $B</div></div></div><div class="bar-row"><div class="bar-label">2014 — Creux <span>13,1 $B</span></div><div class="bar-track"><div class="bar-fill low" data-width="41%">13,1 $B</div></div></div><div class="bar-row"><div class="bar-label">2020 <span>21,6 $B</span></div><div class="bar-track"><div class="bar-fill mid" data-width="68%">21,6 $B</div></div></div><div class="bar-row"><div class="bar-label">2025 — Estimé <span>31,7 $B</span></div><div class="bar-track"><div class="bar-fill high" data-width="100%">31,7 $B</div></div></div><p style="margin-top:14px;font-family:var(--font-mono);font-size:10px;color:var(--grey)">Portée par le streaming payant.</p></div></div>
-    </div>
-    <div class="animated">
-      <div class="devinette-card" id="dev2"><div class="devinette-label">Devinette</div><div class="devinette-question">En 2025, quelle part du marché le streaming représente-t-il ?</div><div class="slider-dev"><div class="slider-row"><div class="slider-val"><span id="sliderVal">50</span><span>%</span></div><input type="range" min="10" max="95" value="50" id="streamSlider" oninput="document.getElementById('sliderVal').textContent=this.value"></div><button class="dev-validate-btn" onclick="devSlider()">Valider mon estimation</button></div><div class="dev-result" id="dev2result"></div></div>
-      <div style="position:relative"><div class="lock-overlay" id="lock2"><div class="lock-icon">🔒</div><div class="lock-text">Répondez à la devinette pour débloquer</div></div><div class="chart-locked" id="chart2"><p class="chart-title">RÉPARTITION PAR FORMAT — 2025</p><div class="pie-wrap"><svg class="pie-svg" width="160" height="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" fill="transparent" stroke="#8DB824" stroke-width="40" stroke-dasharray="263 377" stroke-dashoffset="0" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="60" fill="transparent" stroke="#A54656" stroke-width="40" stroke-dasharray="64 377" stroke-dashoffset="-263" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="60" fill="transparent" stroke="#6a8aaa" stroke-width="40" stroke-dasharray="34 377" stroke-dashoffset="-327" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="60" fill="transparent" stroke="#4a5a6a" stroke-width="40" stroke-dasharray="15 377" stroke-dashoffset="-361" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="38" fill="var(--bg2)"/><text x="80" y="77" text-anchor="middle" fill="#8DB824" font-family="Syne,sans-serif" font-size="20" font-weight="800">70%</text><text x="80" y="95" text-anchor="middle" fill="var(--grey)" font-family="Space Mono,monospace" font-size="9">streaming</text></svg><div><div class="pie-legend-item"><div class="pie-dot" style="background:#8DB824"></div> Streaming — <span>70%</span></div><div class="pie-legend-item"><div class="pie-dot" style="background:#A54656"></div> Physiques — <span>17%</span></div><div class="pie-legend-item"><div class="pie-dot" style="background:#6a8aaa"></div> Performance — <span>9%</span></div><div class="pie-legend-item"><div class="pie-dot" style="background:#4a5a6a"></div> Sync — <span>4%</span></div></div></div></div></div>
-    </div>
-  </div>
-  <div class="animated" style="margin-top:64px"><p class="chart-title">LE SAVIEZ-VOUS ? — Survolez pour révéler</p><div class="anecdote-strip"><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #01</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">En combien de secondes Spotify décide-t-il si vous allez aimer une chanson ?</p></div><div class="anec-back">Seulement 30 secondes ! Si vous ne passez cap, c'est un échec pour l'artiste.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #02</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Quel % des écoutes concernent seulement 1% des artistes ?</p></div><div class="anec-back">90% des écoutes ! Les 9 autres % se partagent entre des millions d'artistes.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #03</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Combien gagne un artiste pour 1 million de streams ?</p></div><div class="anec-back">3 000 à 5 000€. Moins qu'un SMIC pour 1 million d'écoutes.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #04</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Combien coûtait un album CD en 1999 ?</p></div><div class="anec-back">15-20€. Aujourd'hui, 100M de titres pour moins de 10€/mois.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #05</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Intro d'un tube en 2024 vs 1990 ?</p></div><div class="anec-back">5 sec en 2024 contre 23 sec en 1990. L'algorithme pénalise financièrement les morceaux skippés avant 30 secondes.</div></div></div></div>
-
-  <div class="quiz-block animated" style="margin-top:64px">
-    <div class="quiz-tag">Décodeur interactif</div>
-    <div class="quiz-q">Vos habitudes vs L'Algorithme : Découvrez les conséquences cachées de vos écoutes.</div>
-    <div class="quiz-options" id="habit-opts" style="display:flex; flex-direction:column; gap:12px;">
-      <div class="quiz-opt" onclick="decodeHabit(this, 'skip')">Je zappe souvent les chansons avant 30 secondes</div>
-      <div class="quiz-opt" onclick="decodeHabit(this, 'sleep')">J'utilise des playlists "Bruits de pluie" pour dormir</div>
-      <div class="quiz-opt" onclick="decodeHabit(this, 'top50')">J'écoute principalement les hits du moment (Top 50)</div>
-    </div>
-    <div id="habit-result" style="margin-top:20px; padding:16px 20px; background:var(--green-glow); border-left:3px solid var(--green); font-size:15px; line-height:1.6; border-radius:8px; display:none;"></div>
-  </div>
-
-  <div class="quiz-block animated" style="margin-top:48px"><div class="quiz-tag">Sondage rapide</div><div class="quiz-q">Quelle plateforme utilisez-vous principalement ?</div><div id="poll-options" style="margin-top:8px"><div class="poll-row" onclick="votePlatform('Spotify')"><div class="poll-label">Spotify</div></div><div class="poll-row" onclick="votePlatform('Apple Music')"><div class="poll-label">Apple Music</div></div><div class="poll-row" onclick="votePlatform('YouTube Music')"><div class="poll-label">YouTube Music</div></div><div class="poll-row" onclick="votePlatform('Deezer')"><div class="poll-label">Deezer</div></div><div class="poll-row" onclick="votePlatform('CD / Vinyle')"><div class="poll-label">CD / Vinyle</div></div><div class="poll-row" onclick="votePlatform('Radio')"><div class="poll-label">Radio</div></div></div><div id="poll-results" style="display:none;margin-top:16px"></div><div class="poll-voted" id="poll-voted"></div></div>
-  <div style="margin-top:64px" class="animated"><div class="devinette-card" id="dev3"><div class="devinette-label">Devinette</div><div class="devinette-question">Quel marché a la croissance la plus rapide en 2025 ?</div><div class="devinette-options"><button class="dev-btn" onclick="devMarket('us',this)">États-Unis</button><button class="dev-btn" onclick="devMarket('jp',this)">Japon</button><button class="dev-btn" onclick="devMarket('cn',this)">Chine</button><button class="dev-btn" onclick="devMarket('fr',this)">France</button></div><div class="dev-result" id="dev3result"></div></div></div>
-  <div style="margin-top:36px" class="animated"><p class="chart-title">CLASSEMENT DES MARCHÉS MONDIAUX — 2025</p><table class="market-table"><thead><tr><th>Rang</th><th>Marché</th><th>Tendance</th><th>Note Clé</th></tr></thead><tbody><tr><td><span class="rank-num">01</span></td><td>États-Unis</td><td><span class="trend-stable">— Stable</span></td><td><span class="note-tag">40% des revenus mondiaux</span></td></tr><tr><td><span class="rank-num">02</span></td><td>Japon</td><td><span class="trend-stable">— Stable</span></td><td><span class="note-tag">Résistance du format physique</span></td></tr><tr><td><span class="rank-num">04</span></td><td>Chine</td><td><span class="trend-up">↑ +1</span></td><td><span class="note-tag">Croissance la plus rapide (20%)</span></td></tr><tr><td><span class="rank-num">06</span></td><td>France</td><td><span class="trend-stable">— Stable</span></td><td><span class="note-tag">Marché mature et diversifié</span></td></tr></tbody></table></div>
-</section>
-
-<div class="divider"></div>
-
-<section>
-  <div class="section-label">Recherche documentaire</div>
-  <h2 class="section-h2 animated">Nos Sources</h2>
-  <div class="sources-grid animated"><div class="source-card"><h3>IFPI</h3><p>Données macro-économiques mondiales. Référence internationale.</p></div><div class="source-card"><h3>CNM / SNEP</h3><p>Focus marché français : streaming, ventes physiques et export.</p></div><div class="source-card"><h3>Rapports Streaming</h3><p>Analyse des algorithmes de rétention et comportements utilisateurs.</p></div></div>
-  <div class="quiz-block animated" style="margin-top:48px"><div class="quiz-tag">Algorithme Spotify</div><div class="quiz-q">Comment fonctionne la recommandation ? Cliquez pour découvrir chaque étape.</div><div class="algo-steps"><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">1. Filtrage collaboratif</div><div class="algo-step-desc">Spotify analyse ce que des utilisateurs aux goûts similaires écoutent et vous recommande leurs découvertes.</div></div><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">2. Analyse du contenu audio</div><div class="algo-step-desc">Chaque morceau est décomposé : tempo, tonalité, énergie, acousticité...</div></div><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">3. Traitement du langage naturel</div><div class="algo-step-desc">L'IA analyse blogs et articles pour comprendre la perception de chaque artiste.</div></div><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">4. Renforcement par vos actions</div><div class="algo-step-desc">Chaque skip, replay, favori réajuste votre profil. Vous entraînez l'algorithme sans le savoir.</div></div></div></div>
-</section>
-
-<div class="divider"></div>
-
-<section class="article-section" id="article">
-  <div class="section-label">Édito</div>
-  <h2 class="section-h2 animated">Notre Article</h2>
-  
-  <div class="article-layout animated">
-    <h3 class="article-title">Du Vinyle à l'Algorithme :<br>Comment la Technologie a Redéfini Notre Écoute Musicale</h3>
-    <div class="article-author">Rédigé par <span>l'équipe du webdoc</span></div>
-    
-    <p class="article-p">Il n'y a pas si longtemps, découvrir de la musique était un acte physique et souvent social. On échangeait des cassettes, ou on attendait qu'une station de radio passe notre nouveau morceau préféré. Aujourd'hui, le partage de celle-ci est bien plus commun. Mais cette transition n'a pas seulement changé la façon dont nous accédons à la musique ; elle a aussi transformé ce que nous écoutons, et au cœur de cette révolution se trouve l'algorithme.</p>
-
-    <h3 class="article-h3">La fin de la rareté et l'ère de l'abondance</h3>
-    <p class="article-p">Avant l'arrivée du streaming (Spotify, Apple Music, Deezer, etc...), la consommation musicale était limitée par l'espace physique (un CD, un iPod etc...). Aujourd'hui, ces plateformes offrent l'accès à plus de 100 millions de titres.</p>
-    <p class="article-p">Face à cette profusion vertigineuse, le paradoxe du choix est apparu. Lorsque tout est disponible, que choisir ? C'est ici que l’algorithme rentre en jeu.</p>
-
-    <h3 class="article-h3">L'algorithmique : Le DJ invisible</h3>
-    <p class="article-p">C'est le grand changement de la dernière décennie : nous ne sommes plus les seuls DJ architectes de nos playlists. Les algorithmes de recommandation sont devenus les nouveaux DJ.</p>
-    <p class="article-p">Ces systèmes fonctionnent grâce à l'analyse de données massives (Big Data). Ils ne se contentent pas de savoir que vous aimez le jazz ; ils analysent le moment où vous écoutez de la musique, le temps que vous passez sur une piste avant de passer à la suivante, et ce que font vos amis aux goûts similaires.</p>
-    <p class="article-p">On a par exemple des outils comme "Discover Weekly" sur Spotify ou "Made for You" sur Apple Music qui utilisent le filtrage collaboratif. Pour faire simple, si l'utilisateur A et l'utilisateur B ont écouté 80 % des mêmes chansons dans le passé, et que l'utilisateur A aimé un nouveau morceau X, l'algorithme supposera que l'utilisateur B aimera aussi ce morceau X.</p>
-    <p class="article-p">Le résultat ? Une hyper-personnalisation. Nos oreilles sont de plus en plus enfermées dans ce qu'on appelle des "bulles" musicales, conçues pour maximiser notre plaisir immédiat et, surtout, nous garder sur l'application le plus longtemps possible.</p>
-
-    <h3 class="article-h3">L'impact sur la création musicale</h3>
-    <p class="article-p">La technologie ne se contente pas de modifier la façon d’écouter elle influence ce qui est créé. Les artistes et les maisons de disques ont bien compris que pour percer, il faut plaire à l'algorithme.</p>
-    <p class="article-p">Cela a conduit à une standardisation de la pop moderne par exemple. Afin d'éviter que l'auditeur ne passe au morceau suivant (ce qui baisse les statistiques de la chanson), les introductions se sont raccourcies. Autrefois, une intro pouvait durer 30 secondes pour installer l'ambiance. Aujourd'hui, la plupart des hits pop entrent dans le vif du sujet en moins de 10 secondes.</p>
-    <p class="article-p">De même, pour figurer sur les playlists d'humeur, les producteurs créent des sons qui sonnent de manière similaire à ce qui fonctionne déjà.</p>
-
-    <h3 class="article-h3">La perte des rencontres inattendues ?</h3>
-    <p class="article-p">L'un des arguments les plus forts en faveur de l'algorithme est la découverte. Il nous permet de trouver des artistes obscurs que nous n'aurions jamais rencontrés dans le monde physique. C'est une forme de rencontre automatisée.</p>
-    <p class="article-p">Cependant, cette découverte est souvent dépourvue de contexte. Quand un ami vous faisait écouter un album, il y avait une histoire, une émotion liée à cette découverte. L'algorithme, lui, vous recommande un morceau basé sur des maths froides. Nous écoutons de plus en plus de "morceaux" isolés et de moins en moins d'albums complets.</p>
-
-    <h3 class="article-h3">Conclusion : Reprendre le contrôle</h3>
-    <p class="article-p">La technologie a démocratisé l'accès à la musique et offert une puissance de découverte inégalée. Pourtant, en laissant les algorithmes dicter notre bande-sonore, nous risquons de perdre l'aspect le plus précieux de la musique : le lien humain.</p>
-    <p class="article-p" style="margin-bottom: 0;">L'avenir de l'écoute réside peut-être dans un équilibre : utiliser l'algorithme comme un outil d'exploration, tout en conservant la capacité humaine de sortir des sentiers battus, d'écouter un album de bout en bout, ou de laisser le hasard décider de la prochaine chanson. Après tout, les meilleures découvertes musicales sont souvent celles que personne, ni humain ni machine, n'avait prévues.</p>
-  </div>
-
-  <div class="quiz-block animated" style="margin-top:64px">
-    <div class="quiz-tag">Après la lecture</div>
-    <div class="quiz-q">Cet article a-t-il fait évoluer votre point de vue ?</div>
-    <div class="quiz-options" id="reaction-opts">
-      <div class="quiz-opt" onclick="pickReaction(this,'reveal')">Révélation totale</div>
-      <div class="quiz-opt" onclick="pickReaction(this,'confirm')">Confirme ce que je pensais</div>
-      <div class="quiz-opt" onclick="pickReaction(this,'nuance')">Nuance mon point de vue</div>
-      <div class="quiz-opt" onclick="pickReaction(this,'skeptic')">Je reste sceptique</div>
-    </div>
-    <div class="quiz-feedback" id="reaction-fb"></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="profil" style="background:var(--bg2)">
-  <div class="section-label">Votre profil</div>
-  <h2 class="section-h2 animated">Qui êtes-vous en tant qu'auditeur·rice ?</h2>
-  <p style="color:var(--grey);margin-bottom:36px;font-size:16px" class="animated">3 questions pour révéler votre profil d'écoute.</p>
-  <div class="quiz-block animated"><div class="quiz-tag">Question 1/3</div><div class="quiz-q">Comment découvrez-vous de la musique ?</div><div class="quiz-options"><div class="quiz-opt" onclick="scoreQ(this,1,'algo')">Via les recommandations</div><div class="quiz-opt" onclick="scoreQ(this,1,'social')">Via des amis / réseaux</div><div class="quiz-opt" onclick="scoreQ(this,1,'active')">En cherchant activement</div><div class="quiz-opt" onclick="scoreQ(this,1,'random')">Au hasard</div></div></div>
-  <div class="quiz-block animated" style="margin-top:24px"><div class="quiz-tag">Question 2/3</div><div class="quiz-q">Vous écoutez une chanson en boucle ?</div><div class="quiz-options"><div class="quiz-opt" onclick="scoreQ(this,2,'loop')">Tout le temps</div><div class="quiz-opt" onclick="scoreQ(this,2,'sometimes')">Parfois</div><div class="quiz-opt" onclick="scoreQ(this,2,'never')">Jamais</div></div></div>
-  <div class="quiz-block animated" style="margin-top:24px"><div class="quiz-tag">Question 3/3</div><div class="quiz-q">Face à une playlist IA ?</div><div class="quiz-options"><div class="quiz-opt" onclick="scoreQ(this,3,'trust')">Confiance totale</div><div class="quiz-opt" onclick="scoreQ(this,3,'ok')">Ça dépanne</div><div class="quiz-opt" onclick="scoreQ(this,3,'suspicious')">Méfiance</div><div class="quiz-opt" onclick="scoreQ(this,3,'ignore')">Jamais</div></div></div>
-  <div class="profile-reveal" id="profile-reveal"><div class="profile-title" id="profile-title">Votre profil</div><div class="profile-desc" id="profile-desc"></div></div>
-</section>
-
-<div class="divider"></div>
-
+<!-- QUIZ V/F -->
 <section style="background:var(--bg2)" id="quiz">
   <div class="section-label">Interactif</div>
   <h2 class="section-h2 animated">Vrai ou Faux ? Testez vos intuitions</h2>
@@ -467,20 +381,84 @@
 
 <div class="divider"></div>
 
+<!-- DONNEES -->
+<section class="data-section" id="donnees">
+  <div class="section-label">Données &amp; Recherche</div>
+  <h2 class="section-h2 animated">L'Industrie en Chiffres</h2>
+  <div class="data-grid">
+    <div class="animated">
+      <!--<div class="devinette-card" id="dev1"><div class="devinette-label">Devinette</div><div class="devinette-question">En 2014, les revenus mondiaux ont touché le fond. Devinez le montant en milliards de $ :</div><div class="devinette-options"><button class="dev-btn" onclick="devChoice('dev1','8,2',this)">8,2 $B</button><button class="dev-btn" onclick="devChoice('dev1','13,1',this)">13,1 $B</button><button class="dev-btn" onclick="devChoice('dev1','18,5',this)">18,5 $B</button><button class="dev-btn" onclick="devChoice('dev1','22,2',this)">22,2 $B</button></div><div class="dev-result" id="dev1result"></div></div>-->
+      <div style="position:relative"><!--<div class="lock-overlay" id="lock1"><div class="lock-icon">🔒</div><div class="lock-text">Répondez à la devinette pour débloquer</div></div>--><div id="chart1"><p class="chart-title">ÉVOLUTION DES REVENUS MONDIAUX (MILLIARDS USD) — IFPI 2026</p><div class="bar-row"><div class="bar-label">1999 — Pic CD <span>22,2 $B</span></div><div class="bar-track"><div class="bar-fill peak" data-width="70%">22,2 $B</div></div></div><div class="bar-row"><div class="bar-label">2014 — Creux <span>13,1 $B</span></div><div class="bar-track"><div class="bar-fill low" data-width="41%">13,1 $B</div></div></div><div class="bar-row"><div class="bar-label">2020 <span>21,6 $B</span></div><div class="bar-track"><div class="bar-fill mid" data-width="68%">21,6 $B</div></div></div><div class="bar-row"><div class="bar-label">2025 — Estimé <span>31,7 $B</span></div><div class="bar-track"><div class="bar-fill high" data-width="100%">31,7 $B</div></div></div><p style="margin-top:14px;font-family:var(--font-mono);font-size:10px;color:var(--grey)">Portée par le streaming payant.</p></div></div>
+    </div>
+    <div class="animated">
+      <!--<div class="devinette-card" id="dev2"><div class="devinette-label">Devinette</div><div class="devinette-question">En 2025, quelle part du marché le streaming représente-t-il ?</div><div class="slider-dev"><div class="slider-row"><div class="slider-val"><span id="sliderVal">50</span><span>%</span></div><input type="range" min="10" max="95" value="50" id="streamSlider" oninput="document.getElementById('sliderVal').textContent=this.value"></div><button class="dev-validate-btn" onclick="devSlider()">Valider mon estimation</button></div><div class="dev-result" id="dev2result"></div></div>-->
+      <div style="position:relative"><!--<div class="lock-overlay" id="lock2"><div class="lock-icon">🔒</div><div class="lock-text">Répondez à la devinette pour débloquer</div></div>--><div id="chart2"><p class="chart-title">RÉPARTITION PAR FORMAT — 2025</p><div class="pie-wrap"><svg class="pie-svg" width="160" height="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" fill="transparent" stroke="#8DB824" stroke-width="40" stroke-dasharray="263 377" stroke-dashoffset="0" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="60" fill="transparent" stroke="#A54656" stroke-width="40" stroke-dasharray="64 377" stroke-dashoffset="-263" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="60" fill="transparent" stroke="#6a8aaa" stroke-width="40" stroke-dasharray="34 377" stroke-dashoffset="-327" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="60" fill="transparent" stroke="#4a5a6a" stroke-width="40" stroke-dasharray="15 377" stroke-dashoffset="-361" transform="rotate(-90 80 80)"/><circle cx="80" cy="80" r="38" fill="var(--bg2)"/><text x="80" y="77" text-anchor="middle" fill="#8DB824" font-family="Syne,sans-serif" font-size="20" font-weight="800">70%</text><text x="80" y="95" text-anchor="middle" fill="var(--grey)" font-family="Space Mono,monospace" font-size="9">streaming</text></svg><div><div class="pie-legend-item"><div class="pie-dot" style="background:#8DB824"></div> Streaming — <span>70%</span></div><div class="pie-legend-item"><div class="pie-dot" style="background:#A54656"></div> Physiques — <span>17%</span></div><div class="pie-legend-item"><div class="pie-dot" style="background:#6a8aaa"></div> Performance — <span>9%</span></div><div class="pie-legend-item"><div class="pie-dot" style="background:#4a5a6a"></div> Sync — <span>4%</span></div></div></div></div></div>
+    </div>
+  </div>
+  <div class="animated" style="margin-top:64px"><p class="chart-title"> LE SAVIEZ-VOUS ? — Survolez pour révéler</p><div class="anecdote-strip"><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #01</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">En combien de secondes Spotify décide-t-il si vous allez aimer une chanson ?</p></div><div class="anec-back">Seulement 30 secondes ! Si vous ne passez pas ce cap, c'est un échec pour l'artiste.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #02</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Quel % des écoutes concernent seulement 1% des artistes ?</p></div><div class="anec-back">90% des écoutes ! Les 9 autres % se partagent entre des millions d'artistes.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #03</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Combien gagne un artiste pour 1 million de streams ?</p></div><div class="anec-back">3 000 à 5 000€. Moins qu'un SMIC pour 1 million d'écoutes.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #04</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Combien coûtait un album CD en 1999 ?</p></div><div class="anec-back">15-20€. Aujourd'hui, 100M de titres pour moins de 10€/mois.</div></div><div class="anec-card"><div class="anec-front"><div class="anec-num">ANECDOTE #05</div><p style="font-family:var(--font-head);font-size:15px;font-weight:700">Intro d'un tube en 2024 vs 1990 ?</p></div><div class="anec-back">5 sec en 2024 contre 23 sec en 1990. L'algorithme impose la vitesse.</div></div></div></div>
+  <div class="quiz-block animated" style="margin-top:48px"><div class="quiz-tag">// Sondage rapide</div><div class="quiz-q">Quelle plateforme utilisez-vous principalement ?</div><div id="poll-options" style="margin-top:8px"><div class="poll-row" onclick="votePlatform('Spotify')"><div style="font-size:18px">🟢</div><div class="poll-label">Spotify</div></div><div class="poll-row" onclick="votePlatform('Apple Music')"><div style="font-size:18px">🎵</div><div class="poll-label">Apple Music</div></div><div class="poll-row" onclick="votePlatform('YouTube Music')"><div style="font-size:18px">📺</div><div class="poll-label">YouTube</div></div><div class="poll-row" onclick="votePlatform('Deezer')"><div style="font-size:18px">🟣</div><div class="poll-label">Deezer</div></div><div class="poll-row" onclick="votePlatform('CD / Vinyle')"><div style="font-size:18px">💿</div><div class="poll-label">CD / Vinyle</div></div><div class="poll-row" onclick="votePlatform('Radio')"><div style="font-size:18px">📻</div><div class="poll-label">Radio</div></div></div><div id="poll-results" style="display:none;margin-top:16px"></div><div class="poll-voted" id="poll-voted"></div></div>
+  <div style="margin-top:64px" class="animated"><div class="devinette-card" id="dev3"><div class="devinette-label">Devinette</div><div class="devinette-question">Quel marché a la croissance la plus rapide en 2025 ?</div><div class="devinette-options"><button class="dev-btn" onclick="devMarket('us',this)"> États-Unis</button><button class="dev-btn" onclick="devMarket('jp',this)"> Japon</button><button class="dev-btn" onclick="devMarket('cn',this)"> Chine</button><button class="dev-btn" onclick="devMarket('fr',this)"> France</button></div><div class="dev-result" id="dev3result"></div></div></div>
+  <div style="margin-top:36px" class="animated"><p class="chart-title">CLASSEMENT DES MARCHÉS MONDIAUX — 2025</p><table class="market-table"><thead><tr><th>Rang</th><th>Marché</th><th>Tendance</th><th>Note Clé</th></tr></thead><tbody><tr><td><span class="rank-num">01</span></td><td>États-Unis</td><td><span class="trend-stable">— Stable</span></td><td><span class="note-tag">40% des revenus mondiaux</span></td></tr><tr><td><span class="rank-num">02</span></td><td>Japon</td><td><span class="trend-stable">— Stable</span></td><td><span class="note-tag">Résistance du format physique</span></td></tr><tr><td><span class="rank-num">04</span></td><td>Chine</td><td><span class="trend-up">↑ +1</span></td><td><span class="note-tag">Croissance la plus rapide (20%)</span></td></tr><tr><td><span class="rank-num">06</span></td><td>France</td><td><span class="trend-stable">— Stable</span></td><td><span class="note-tag">Marché mature et diversifié</span></td></tr></tbody></table></div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="section-label">Recherche documentaire</div>
+  <h2 class="section-h2 animated">Nos Sources</h2>
+  <div class="sources-grid animated"><div class="source-card"><div class="source-icon"></div><h3>IFPI</h3><p>Données macro-économiques mondiales. Référence internationale.</p></div><div class="source-card"><div class="source-icon"></div><h3>CNM / SNEP</h3><p>Focus marché français : streaming, ventes physiques et export.</p></div><div class="source-card"><div class="source-icon"></div><h3>Rapports Streaming</h3><p>Analyse des algorithmes de rétention et comportements utilisateurs.</p></div></div>
+  <div class="quiz-block animated" style="margin-top:48px"><div class="quiz-tag">// Algorithme Spotify</div><div class="quiz-q">Comment fonctionne la recommandation ? Cliquez pour découvrir chaque étape.</div><div class="algo-steps"><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">1. Filtrage collaboratif </div><div class="algo-step-desc">Spotify analyse ce que des utilisateurs aux goûts similaires écoutent et vous recommande leurs découvertes.</div></div><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">2. Analyse du contenu audio </div><div class="algo-step-desc">Chaque morceau est décomposé : tempo, tonalité, énergie, acousticité...</div></div><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">3. Traitement du langage naturel </div><div class="algo-step-desc">L'IA analyse blogs et articles pour comprendre la perception de chaque artiste.</div></div><div class="algo-step" onclick="toggleAlgo(this)"><div class="algo-step-title">4. Renforcement par vos actions </div><div class="algo-step-desc">Chaque skip, replay, favori réajuste votre profil. Vous entraînez l'algorithme sans le savoir.</div></div></div></div>
+</section>
+
+<div class="divider"></div>
+
+<section class="interview-section" id="interview">
+  <div class="section-label">Article</div>
+  <h2 class="section-h2 animated">Notre Article </h2>
+  <div class="interview-layout animated">
+  <!-- <div class="interview-player"><div class="player-header"><div class="player-dot r"></div><div class="player-dot y"></div><div class="player-dot g"></div><span class="player-label">INTERVIEW — Musique &amp; Technologie</span></div><div class="video-embed" id="videoContainer"><div class="video-placeholder"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><p>CHARGER LA VIDÉO CI-DESSOUS</p></div></div><div class="player-footer"><div class="progress-bar-vid"><div class="progress-fill"></div></div><span class="time-label">00:00</span></div></div> -->
+  
+  <div>
+  <h1> Du Vinyle à l'Algorithme : Comment la Technologie a Redéfini Notre Écoute Musicale </h1>
+  <p> Il n'y a pas si longtemps, découvrir de la musique était un acte physique et souvent social. On échangeait des cassettes, ou on attendait qu'une station de radio passe notre nouveau morceau préféré. Aujourd'hui, le partage de celle-ci est bien plus commun. 
+Mais cette transition n'a pas seulement changé la façon dont nous accédons à la musique ; elle a aussi transformé ce que nous écoutons, et au cœur de cette révolution se trouve l'algorithme. </p>
+  <h1> La fin de la rareté et l'ère de l'abondance </h1>
+  <p> Avant l'arrivée du streaming (Spotify, Apple Music, Deezer), la consommation musicale était limitée par l'espace physique (un CD, un iPod etc.). Aujourd'hui, ces plateformes offrent l'accès à plus de 100 millions de titres.
+Face à cette profusion vertigineuse, le paradoxe du choix est apparu. Lorsque tout est disponible, que choisir ? C'est ici que l’algorithme rentre en jeu. </p>
+  <h1> L'algorithmique : Le DJ invisible </h1>
+  <p> C'est le grand changement de la dernière décennie : nous ne sommes plus les seuls DJ architectes de nos playlists. Les algorithmes de recommandation sont devenus les nouveaux DJ.
+Ces systèmes fonctionnent grâce à l'analyse de données massives (Big Data). Ils ne se contentent pas de savoir que vous aimez le jazz ; ils analysent le moment où vous écoutez de la musique, le temps que vous passez sur une piste avant de passer à la suivante (le "skip rate"), et ce que font vos amis aux goûts similaires.
+Des outils comme "Discover Weekly" sur Spotify ou "Made for You" sur Apple Music utilisent le filtrage collaboratif. Si l'utilisateur A et l'utilisateur B ont écouté 80 % des mêmes chansons dans le passé, et que l'utilisateur A aimé un nouveau morceau X, l'algorithme supposera que l'utilisateur B aimera aussi ce morceau X.
+Le résultat ? Une hyper-personnalisation. Nos oreilles sont de plus en plus enfermées dans des "bulles" musicales, conçues pour maximiser notre plaisir immédiat et, surtout, nous garder sur l'application le plus longtemps possible. </p>
+  <h1> L'impact sur la création musicale : L'effet "Spotify-core" </h1>
+  <p> La technologie ne se contente pas de modifier la façon d’écouter elle influence ce qui est créé. Les artistes et les maisons de disques ont bien compris que pour percer, il faut plaire à l'algorithme.
+Cela a conduit à une standardisation de la pop moderne. Afin d'éviter que l'auditeur ne passe au morceau suivant (ce qui baisse les statistiques de la chanson), les introductions se sont raccourcies. Autrefois, une intro pouvait durer 30 secondes pour installer l'ambiance. Aujourd'hui, la plupart des hits pop entrent dans le vif du sujet en moins de 10 secondes.
+De même, pour figurer sur les playlists "Mood" (humeur), les producteurs créent des sons qui sonnent de manière similaire à ce qui fonctionne déjà. On parle de plus en plus de "Spotify-core" : une musique lisse, parfaitement polie, conçue pour être mise en fond sonore plutôt que pour être écoutée activement. </p>
+  <h1> La perte des rencontres inattendues ? </h1>
+  <p> L'un des arguments les plus forts en faveur de l'algorithme est la découverte. Il nous permet de trouver des artistes obscurs que nous n'aurions jamais rencontrés dans le monde physique. C'est une forme de rencontre automatisée.
+Cependant, cette découverte est souvent dépourvue de contexte. Quand un ami vous faisait écouter un album, il y avait une histoire, une émotion liée à cette découverte. L'algorithme, lui, vous recommande un morceau basé sur des maths froides. Nous écoutons de plus en plus de "morceaux" isolés et de moins en moins d'albums complets. </p>
+  <h1> Conclusion : Reprendre le contrôle </h1>
+  <p> La technologie a démocratisé l'accès à la musique et offert une puissance de découverte inégalée. Pourtant, en laissant les algorithmes dicter notre bande-sonore, nous risquons de perdre l'aspect le plus précieux de la musique :  le lien humain.
+L'avenir de l'écoute réside peut-être dans un équilibre : utiliser l'algorithme comme un outil d'exploration, tout en conservant la capacité humaine de sortir des sentiers battus, d'écouter un album de bout en bout, ou de laisser le hasard décider de la prochaine chanson. Après tout, les meilleures découvertes musicales sont souvent celles que personne, ni humain ni machine, n'avait prévues. </p>
+  </div>
+  
+    <div class="interview-info"><h3>Nos Témoignages de Terrain</h3><p>Dans le cadre de notre webdocumentaire, nous avons mené des interviews pour recueillir des témoignages directs sur la transformation numérique de la musique.</p><div class="interview-meta"><div class="meta-row"><div class="dot"></div> Réalisé par : <span>Erij Guissouma</span></div><div class="meta-row"><div class="dot"></div> Coordination : <span>Axel Robic</span></div><div class="meta-row"><div class="dot"></div> Direction artistique : <span>Mohamed Louguemihi</span></div><div class="meta-row"><div class="dot"></div> Encadrante : <span>Mme NOTTIN Muriel</span></div></div><input type="text" id="url-input" placeholder="Commentaire/Note"><!--<button id="load-btn" onclick="loadVideo()">▶ Charger la vidéo</button><div class="upload-zone" onclick="document.getElementById('fileInput').click()"><input type="file" id="fileInput" accept="video/*" style="display:none" onchange="loadFile(this)"><div class="upload-icon">📁</div><div>Importer un fichier vidéo local</div><div style="font-size:10px;margin-top:4px;opacity:.6">MP4, MOV, AVI...</div></div>--></div> 
+  </div>
+  <!--<div class="quiz-block animated" style="margin-top:64px"><div class="quiz-tag">// Après l'interview</div><div class="quiz-q">L'interview vous a-t-elle surpris·e ?</div><div class="quiz-options" id="reaction-opts"><div class="quiz-opt" onclick="pickReaction(this,'reveal')"> Révélation totale</div><div class="quiz-opt" onclick="pickReaction(this,'confirm')"> Confirme ce que je pensais</div><div class="quiz-opt" onclick="pickReaction(this,'nuance')"> Nuance mon point de vue</div><div class="quiz-opt" onclick="pickReaction(this,'skeptic')"> Je reste sceptique</div></div><div class="quiz-feedback" id="reaction-fb"></div></div>-->
+</section>
+
+<div class="divider"></div>
+
 <section id="equipe">
   <div class="section-label">L'équipe</div>
   <h2 class="section-h2 animated">Qui Sommes-Nous ?</h2>
   <div class="team-grid animated">
-    <div class="team-card"><div class="team-name">Erij Guissouma</div><div class="team-role">Reportage, article & analyse des données.</div><div class="team-tag">REDACTION · DATA</div><button class="taste-btn" onclick="revealTaste(this)">Ses goûts musicaux</button><div class="taste-reveal"><div class="taste-genres">R&B · Soul · Musique Orientale</div><div class="taste-detail">"La musique, c'est le feeling. Rien ne remplace une recommandation d'un ami."</div></div></div>
-    <div class="team-card"><div class="team-name">Axel Robic</div><div class="team-role">Communication & recherche documentaire stratégique.</div><div class="team-tag">COM · DOCS</div><button class="taste-btn" onclick="revealTaste(this)">Ses goûts musicaux</button><div class="taste-reveal"><div class="taste-genres">Rock Indé · Électro · Jazz</div><div class="taste-detail">"J'aime quand la musique prend des risques. Le streaming a standardisé les goûts."</div></div></div>
-    <div class="team-card"><div class="team-name">Mohamed Louguemihi</div><div class="team-role">Organisation, développement web & direction artistique.</div><div class="team-tag">DESIGN · DEV</div><button class="taste-btn" onclick="revealTaste(this)">Ses goûts musicaux</button><div class="taste-reveal"><div class="taste-genres">Rap FR · Afrobeats · Reggaeton</div><div class="taste-detail">"Le streaming a ouvert les frontières ! Mais je vérifie ce qu'ils me cachent."</div></div></div>
+    <div class="team-card"><div class="team-name">Erij Guissouma</div><div class="team-role">article, recherche & analyse des données.</div><div class="team-tag">ARTICLE · DATA</div><!--<button class="taste-btn" onclick="revealTaste(this)"> Ses goûts musicaux</button>--><div class="taste-reveal"><div class="taste-emoji"></div><div class="taste-genres">Pop · rock  </div><div class="taste-detail">"the world without music is nothing."</div></div></div>
+    <div class="team-card"><div class="team-name">Axel Robic</div><div class="team-role">Communication & recherche documentaire stratégique.</div><div class="team-tag">COM · DOCS</div><!--<button class="taste-btn" onclick="revealTaste(this)"> Ses goûts musicaux</button>--><div class="taste-reveal"><div class="taste-emoji"></div><div class="taste-genres">Rock Indé · Électro · vocaloÏd</div><div class="taste-detail">"si c'est de la bonne musique c'est ok."</div></div></div>
+    <div class="team-card"><div class="team-name">Mohamed Louguemihi</div><div class="team-role">Organisation, composition & direction artistique.</div><div class="team-tag">DESIGN · ORGA</div><!--<button class="taste-btn" onclick="revealTaste(this)"> Ses goûts musicaux</button>--><div class="taste-reveal"><div class="taste-emoji"></div><div class="taste-genres">Rap FR · Afrobeats · Reggaeton</div><div class="taste-detail">"Le streaming a ouvert les frontières ! Mais je vérifie ce qu'ils me cachent."</div></div></div>
   </div>
   <p style="margin-top:28px;color:var(--grey);font-family:var(--font-mono);font-size:12px">Encadrante : <span style="color:var(--white)">Mme NOTTIN Muriel</span> · Projet IN2C · Université de Toulouse · Avril 2026</p>
 </section>
-
-<div class="reset-btn-container">
-  <button class="btn-reset" onclick="resetWebdoc()">Refaire le webdoc</button>
-</div>
 
 <footer>
   <div class="footer-left"><div class="project-name">Musique &amp; Technologie : Qui décide vraiment ?</div>Axel Robic · Erij Guissouma · Mohamed Louguemihi<br>Encadrante : Mme NOTTIN Muriel · Projet IN2C · Avril 2026<br>Université de Toulouse</div>
@@ -490,181 +468,92 @@
 <script>
 var visitorName='',totalScore=0,maxScore=7,totalAnswered=0,pickedGenres=[],scores={algo:0,active:0,loop:0},answeredQ={},pollVotes={Spotify:12,'Apple Music':5,'YouTube Music':8,Deezer:4,'CD / Vinyle':2,Radio:3},userVote=null;
 
-var sfxGood = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
-var sfxBad = new Audio('https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3');
-var bgm = new Audio('background.mp3');
-bgm.loop = true;
-bgm.volume = 0.3;
-var isPlaying = false;
-
-window.onload = function() {
-  var savedName = localStorage.getItem('webdoc_name');
-  var savedScore = localStorage.getItem('webdoc_score');
-  if(savedName) {
-    visitorName = savedName;
-    if(savedScore) {
-      totalScore = parseInt(savedScore);
-    }
-    document.getElementById('welcome-overlay').style.display = 'none';
-    document.getElementById('topbar-visitor').textContent = visitorName;
-    document.getElementById('topbar-visitor').style.display = 'block';
-    document.getElementById('scoreBadge').classList.add('visible');
-    document.getElementById('scoreVal').textContent = totalScore;
-    updateFire();
-  }
-};
-
-window.addEventListener('scroll', function() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById('scrollBar').style.width = scrolled + '%';
-});
-
-function toggleBgm() {
-  var btnIcon = document.getElementById('bgmIcon');
-  var btn = document.getElementById('bgmToggle');
-  if(isPlaying) {
-    bgm.pause();
-    isPlaying = false;
-    btn.innerHTML = '<span id="bgmIcon">🔈</span> Activer le son';
-  } else {
-    bgm.play();
-    isPlaying = true;
-    btn.innerHTML = '<span id="bgmIcon">🔊</span> Couper le son';
-  }
-}
-
-function playGoodSound() {
-  sfxGood.currentTime = 0;
-  sfxGood.play().catch(function(){});
-}
-
-function playBadSound() {
-  sfxBad.currentTime = 0;
-  sfxBad.play().catch(function(){});
-}
-
-var habits = {
-  skip: "<strong>L'impact caché :</strong> L'artiste ne touche absolument rien. Les plateformes ne paient qu'après 30 secondes d'écoute. Résultat ? L'industrie musicale a raccourci les intros : le refrain doit arriver en moins de 10 secondes pour capter votre attention !",
-  sleep: "<strong>L'impact caché :</strong> Vous financez des 'Fake Artists' ! Beaucoup de pistes de bruits blancs sont créées par des labels fantômes (ou des IA) qui siphonnent les revenus générés par le système, car les plateformes paient au prorata des écoutes globales.",
-  top50: "<strong>L'impact caché :</strong> C'est l'effet 'Bulle de filtres'. En écoutant ce qui est déjà populaire, vous renforcez le monopole d'une poignée d'artistes. Aujourd'hui, 1% des artistes monopolisent plus de 90% des écoutes mondiales."
-};
-
-function decodeHabit(el, key) {
-  var container = document.getElementById('habit-opts');
-  container.querySelectorAll('.quiz-opt').forEach(function(o){ 
-    o.classList.remove('selected'); 
-  });
-  el.classList.add('selected');
-  var res = document.getElementById('habit-result');
-  res.innerHTML = habits[key];
-  res.style.display = 'block';
-  res.classList.add('visible');
-  fireConfetti(el);
-}
-
-function saveData() {
-  if(visitorName) {
-    localStorage.setItem('webdoc_name', visitorName);
-  }
-  localStorage.setItem('webdoc_score', totalScore);
-}
-
-function resetWebdoc() {
-  localStorage.removeItem('webdoc_name');
-  localStorage.removeItem('webdoc_score');
-  window.scrollTo(0, 0);
-  window.location.reload();
-}
-
-function startExperience(){
-  var input = document.getElementById('visitor-name');
-  visitorName = input.value.trim() || '';
-  var overlay = document.createElement('div');
-  overlay.id = 'explore-transition';
-  overlay.innerHTML = '<div class="trans-text">▶ Explorer le webdoc</div><div class="trans-sub">'+(visitorName?'Bienvenue '+visitorName:'Bienvenue')+' · Bonne exploration</div>';
-  document.body.appendChild(overlay);
-  document.getElementById('welcome-overlay').classList.add('hide');
-  
-  bgm.play().then(function() {
-      isPlaying = true;
-      document.getElementById('bgmToggle').style.display = 'flex';
-  }).catch(function(e) {
-      console.log("Lecture automatique bloquée", e);
-      document.getElementById('bgmToggle').style.display = 'flex';
-      document.getElementById('bgmToggle').innerHTML = '<span id="bgmIcon">🔈</span> Activer le son';
-  });
-
-  requestAnimationFrame(function(){requestAnimationFrame(function(){overlay.classList.add('enter');});});
-  setTimeout(function(){overlay.querySelector('.trans-text').classList.add('show');overlay.querySelector('.trans-sub').classList.add('show');},350);
-  
-  if(visitorName){
-      document.getElementById('topbar-visitor').textContent = visitorName;
-      document.getElementById('topbar-visitor').style.display = 'block';
-      var g = document.getElementById('hero-greeting');
-      g.textContent = 'Bienvenue '+visitorName+' ! Profitez de l\'expérience interactive.';
-      g.style.display = 'block';
-      g.classList.add('show');
-  }
-  document.getElementById('scoreBadge').classList.add('visible');
-  saveData();
-  
-  setTimeout(function(){
-      overlay.classList.remove('enter');
-      overlay.classList.add('exit');
-      document.getElementById('accueil').scrollIntoView({behavior:'smooth',block:'start'});
-  }, 1100);
-  
-  setTimeout(function(){
-      overlay.remove();
-      animateBars();
-  }, 1700);
-}
+/* ═══ TRANSITION ═══ */
+function startExperience(){var input=document.getElementById('visitor-name');visitorName=input.value.trim()||'';var overlay=document.createElement('div');overlay.id='explore-transition';overlay.innerHTML='<div class="trans-text">▶ Explorer le webdoc</div><div class="trans-sub">'+(visitorName?'Bienvenue '+visitorName:'Bienvenue')+' · Bonne exploration</div>';document.body.appendChild(overlay);document.getElementById('welcome-overlay').classList.add('hide');requestAnimationFrame(function(){requestAnimationFrame(function(){overlay.classList.add('enter');});});setTimeout(function(){overlay.querySelector('.trans-text').classList.add('show');overlay.querySelector('.trans-sub').classList.add('show');},350);if(visitorName){document.getElementById('topbar-visitor').textContent=' '+visitorName;document.getElementById('topbar-visitor').style.display='block';var g=document.getElementById('hero-greeting');g.textContent=' Bienvenue '+visitorName+' ! Profitez de l\'expérience interactive.';g.style.display='block';g.classList.add('show');}document.getElementById('scoreBadge').classList.add('visible');setTimeout(function(){overlay.classList.remove('enter');overlay.classList.add('exit');document.getElementById('accueil').scrollIntoView({behavior:'smooth',block:'start'});},1100);setTimeout(function(){overlay.remove();animateBars();},1700);}
 document.getElementById('visitor-name').addEventListener('keydown',function(e){if(e.key==='Enter')startExperience();});
 
 function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
 
-function updateFire() {
-  var fireEl=document.querySelector('.score-fire');
-  if(totalScore>=5){fireEl.className='score-fire lvl-3';}else if(totalScore>=3){fireEl.className='score-fire lvl-2';}else if(totalScore>=1){fireEl.className='score-fire lvl-1';}
-}
-
-function addScore(){totalScore++;totalAnswered++;document.getElementById('scoreVal').textContent=totalScore;var b=document.getElementById('scoreBadge');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');updateFire();saveData();playGoodSound();}
-function addWrong(){totalAnswered++;playBadSound();}
+/* ═══ SCORE + CONFETTI ═══ */
+function addScore(){totalScore++;totalAnswered++;document.getElementById('scoreVal').textContent=totalScore;var b=document.getElementById('scoreBadge');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');}
+function addWrong(){totalAnswered++;}
 
 function fireConfetti(originEl){var canvas=document.getElementById('confettiCanvas'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;var cx=canvas.width/2,cy=canvas.height/2;if(originEl){var r=originEl.getBoundingClientRect();cx=r.left+r.width/2;cy=r.top+r.height/2;}var colors=['#8DB824','#b0e030','#A54656','#6a8aaa','#F2F2F0','#e0a030'],particles=[];for(var i=0;i<80;i++){particles.push({x:cx,y:cy,vx:(Math.random()-.5)*16,vy:(Math.random()-.5)*16-4,size:Math.random()*7+3,color:colors[Math.floor(Math.random()*colors.length)],rot:Math.random()*360,rotS:(Math.random()-.5)*12,opacity:1});}function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);var alive=false;particles.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=0.3;p.rot+=p.rotS;p.opacity-=0.013;p.vx*=0.99;if(p.opacity>0){alive=true;ctx.save();ctx.globalAlpha=Math.max(0,p.opacity);ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);ctx.restore();}});if(alive)requestAnimationFrame(anim);else ctx.clearRect(0,0,canvas.width,canvas.height);}anim();}
 
+/* ═══ MEGA CONFETTI (for 7/7) ═══ */
 function fireMegaConfetti(){var canvas=document.getElementById('confettiCanvas'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;var colors=['#8DB824','#b0e030','#e0a030','#A54656','#6a8aaa','#F2F2F0','#ff6b6b','#4ecdc4'],particles=[];for(var i=0;i<250;i++){particles.push({x:canvas.width/2,y:canvas.height/2,vx:(Math.random()-.5)*28,vy:(Math.random()-.5)*28-8,size:Math.random()*9+3,color:colors[Math.floor(Math.random()*colors.length)],rot:Math.random()*360,rotS:(Math.random()-.5)*16,opacity:1});}function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);var alive=false;particles.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=0.25;p.rot+=p.rotS;p.opacity-=0.007;p.vx*=0.995;if(p.opacity>0){alive=true;ctx.save();ctx.globalAlpha=Math.max(0,p.opacity);ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);ctx.restore();}});if(alive)requestAnimationFrame(anim);else ctx.clearRect(0,0,canvas.width,canvas.height);}anim();}
 
+/* ═══ CELEBRATION ═══ */
 var celebShown=false;
-function checkCelebration(){if(celebShown||totalAnswered<7)return;celebShown=true;var overlay=document.getElementById('celebration-overlay'),emoji=document.getElementById('celebEmoji'),title=document.getElementById('celebTitle'),desc=document.getElementById('celebDesc'),score=document.getElementById('celebScore');score.textContent=totalScore;if(totalScore===7){emoji.textContent='🏆';title.textContent='Parfait ! Score maximal !';title.className='celeb-title gold';desc.textContent=(visitorName?visitorName+', tu':'Tu')+' as répondu juste à toutes les questions ! Impressionnant — les algorithmes n\'ont aucun secret pour '+(visitorName?'toi':'vous')+' !';fireMegaConfetti();setTimeout(fireMegaConfetti,600);setTimeout(fireMegaConfetti,1200);}else if(totalScore>=4){emoji.textContent='🌟';title.textContent='Bien joué !';title.className='celeb-title green';desc.textContent=(visitorName?visitorName+', b':'B')+'onne performance ! '+(visitorName?'Tu as':'Vous avez')+' un vrai sens de l\'analyse. Continue à explorer le webdoc pour en apprendre encore plus !';fireConfetti(null);}else{emoji.textContent='💡';title.textContent='Pas de souci !';title.className='celeb-title soft';desc.textContent='Ce n\'est pas grave — ce webdoc est justement là pour apprendre ! Les réponses surprennent tout le monde. L\'important, c\'est la curiosité.';}overlay.classList.add('show');setTimeout(function(){overlay.classList.remove('show');},5000);}
+function checkCelebration(){
+  if(celebShown||totalAnswered<7)return;
+  celebShown=true;
+  var overlay=document.getElementById('celebration-overlay');
+  var emoji=document.getElementById('celebEmoji');
+  var title=document.getElementById('celebTitle');
+  var desc=document.getElementById('celebDesc');
+  var score=document.getElementById('celebScore');
+  score.textContent=totalScore;
 
-var opinionFBs={access:{text:'38% pensent comme vous ! La technologie a démultiplié l\'accès. Mais accéder à plus ne signifie pas choisir librement.',red:false},ctrl:{text:'Les algorithmes orientent 70% des écoutes. On "choisit" dans une liste que d\'autres ont décidée.',red:true},both:{text:'C\'est la tension au cœur du webdoc. Plus d\'accès, moins de sérendipité.',red:false},none:{text:'C\'est pour ça qu\'on a fait ce webdoc. Continuez à explorer !',red:false}};
-function pickOpinion(el,key){document.querySelectorAll('#opinion-opts .quiz-opt').forEach(function(o){o.classList.remove('selected','selected-red');});var fb=opinionFBs[key];el.classList.add(fb.red?'selected-red':'selected');var fbEl=document.getElementById('opinion-fb');fbEl.textContent=fb.text;fbEl.className='quiz-feedback'+(fb.red?' red-fb':'');fbEl.style.display='block';fbEl.classList.add('visible');showToast('Réponse enregistrée');}
+  if(totalScore===7){
+    emoji.textContent='';
+    title.textContent='Parfait ! Score maximal !';
+    title.className='celeb-title gold';
+    desc.textContent=(visitorName?visitorName+', tu':'Tu')+' as répondu juste à toutes les questions ! Impressionnant — les algorithmes n\'ont aucun secret pour '+ (visitorName?'toi':'vous')+' !';
+    fireMegaConfetti();
+    setTimeout(fireMegaConfetti,600);
+    setTimeout(fireMegaConfetti,1200);
+  }else if(totalScore>=4){
+    emoji.textContent='';
+    title.textContent='Bien joué !';
+    title.className='celeb-title green';
+    desc.textContent=(visitorName?visitorName+', b':'B')+'onne performance ! '+ (visitorName?'Tu as':'Vous avez')+' un vrai sens de l\'analyse. Continue à explorer le webdoc pour en apprendre encore plus !';
+    fireConfetti(null);
+  }else{
+    emoji.textContent='';
+    title.textContent='Pas de souci !';
+    title.className='celeb-title soft';
+    desc.textContent='Ce n\'est pas grave — ce webdoc est justement là pour apprendre ! Les réponses surprennent tout le monde. L\'important, c\'est la curiosité.';
+  }
 
+  overlay.classList.add('show');
+  setTimeout(function(){overlay.classList.remove('show');},5000);
+}
+
+/* ═══ OPINION ═══ */
+var opinionFBs={access:{text:' 38% pensent comme vous ! La technologie a démultiplié l\'accès. Mais accéder à plus ne signifie pas choisir librement.',red:false},ctrl:{text:' Les algorithmes orientent 70% des écoutes. On "choisit" dans une liste que d\'autres ont décidée.',red:true},both:{text:' C\'est la tension au cœur du webdoc. Plus d\'accès, moins de sérendipité.',red:false},none:{text:' C\'est pour ça qu\'on a fait ce webdoc. Continuez à explorer !',red:false}};
+function pickOpinion(el,key){document.querySelectorAll('#opinion-opts .quiz-opt').forEach(function(o){o.classList.remove('selected','selected-red');});var fb=opinionFBs[key];el.classList.add(fb.red?'selected-red':'selected');var fbEl=document.getElementById('opinion-fb');fbEl.textContent=fb.text;fbEl.className='quiz-feedback'+(fb.red?' red-fb':'');fbEl.style.display='block';fbEl.classList.add('visible');showToast('Réponse enregistrée ✓');}
+
+/* ═══ GENRE ═══ */
 function toggleGenre(el,name){el.classList.toggle('picked');if(el.classList.contains('picked'))pickedGenres.push(name);else pickedGenres=pickedGenres.filter(function(g){return g!==name;});var res=document.getElementById('genre-result');if(pickedGenres.length===0){res.style.display='none';return;}res.innerHTML='<strong>'+pickedGenres.join(' · ')+'</strong><br> '+getAlgoForGenres(pickedGenres);res.style.display='block';}
 function getAlgoForGenres(g){if(g.indexOf('Classique')!==-1||g.indexOf('Jazz')!==-1)return'Spotify vous classerait en "audiophile sophistiqué" — playlists remplies de raretés.';if(g.indexOf('K-Pop')!==-1||g.indexOf('Pop')!==-1)return'L\'algorithme vous aime ! Vos recommandations sont précises… peut-être trop.';if(g.indexOf('Metal')!==-1||g.indexOf('Rock')!==-1)return'Rock/metal = résistance aux algorithmes. La culture album persiste.';if(g.indexOf('Hip-Hop')!==-1||g.indexOf('R&B')!==-1)return'Terrain de jeu des algorithmes de tendance — votre feed suit les charts.';if(g.indexOf('Électro')!==-1)return'Parfait pour les playlists contextuelles.';return'Profil éclectique ! L\'algorithme aura du mal à vous cerner — bonne nouvelle.';}
 
-var quizData={q1:{correct:true,goodMsg:'Exact ! Spotify paie ~0,003 € par écoute. Il faut donc des millions de streams pour vivre de son art, favorisant les musiques virales sur TikTok.',badMsg:'Et si ! Spotify paie ~0,003 € par écoute, ce qui précarise beaucoup d\'artistes et pousse à créer des morceaux courts et viraux.'},q2:{correct:false,goodMsg:'Bien vu ! Les algorithmes favorisent les contenus populaires et intègrent des biais.',badMsg:'Faux ! Les algorithmes favorisent les contenus populaires et intègrent des biais.'},q3:{correct:true,goodMsg:'C\'est vrai ! De 22,2 à 13,1 Mds$, soit -41% en 15 ans.',badMsg:'C\'est pourtant vrai ! De 22,2 à 13,1 Mds$, soit -41%.'},q4:{correct:true,goodMsg:'Incroyable mais vrai ! ~100 000 chansons uploadées chaque jour en 2025.',badMsg:'C\'est vrai ! ~100 000 chansons uploadées chaque jour en 2025.'}};
+/* ═══ QUIZ V/F ═══ */
+var quizData={q1:{correct:true,goodMsg:'Exact ! Spotify paie ~0,003 € par écoute, soit moins d\'un centime.',badMsg:'Et si ! Spotify paie ~0,003 € par écoute — moins d\'un centime.'},q2:{correct:false,goodMsg:'Bien vu ! Les algorithmes favorisent les contenus populaires et intègrent des biais.',badMsg:'Faux ! Les algorithmes favorisent les contenus populaires et intègrent des biais.'},q3:{correct:true,goodMsg:'C\'est vrai ! De 22,2 à 13,1 Mds$, soit -41% en 15 ans.',badMsg:'C\'est pourtant vrai ! De 22,2 à 13,1 Mds$, soit -41%.'},q4:{correct:true,goodMsg:'Incroyable mais vrai ! ~100 000 chansons uploadées chaque jour en 2025.',badMsg:'C\'est vrai ! ~100 000 chansons uploadées chaque jour en 2025.'}};
 function quizVraiFaux(qId,choseVrai,btn){var card=document.getElementById(qId);if(card.dataset.answered)return;card.dataset.answered='true';var data=quizData[qId],btns=card.querySelectorAll('.quiz-btn'),isCorrect=(choseVrai&&data.correct)||(!choseVrai&&!data.correct);btns.forEach(function(b){b.classList.add('disabled');});var fb=document.getElementById(qId+'fb');if(isCorrect){btn.classList.add('selected-correct');card.classList.add('correct');fb.className='quiz-card-feedback visible good';fb.textContent='✓ '+data.goodMsg;addScore();fireConfetti(btn);}else{btn.classList.add('selected-wrong');card.classList.add('wrong');fb.className='quiz-card-feedback visible bad';fb.textContent='✗ '+data.badMsg;addWrong();btns.forEach(function(b){if((b.textContent.trim()==='Vrai'&&data.correct)||(b.textContent.trim()==='Faux'&&!data.correct))b.classList.add('show-correct');});}checkCelebration();}
 
+/* ═══ DEVINETTES ═══ */
 function devChoice(devId,choice,btn){var card=document.getElementById(devId);if(card.dataset.answered)return;card.dataset.answered='true';var result=document.getElementById(devId+'result'),btns=card.querySelectorAll('.dev-btn');btns.forEach(function(b){b.classList.add('disabled');});if(choice==='13,1'){btn.classList.add('correct-pick');result.className='dev-result good';result.innerHTML='✓ Bravo ! 13,1 Mds$ en 2014. Graphique débloqué !';addScore();fireConfetti(btn);}else{btn.classList.add('wrong-pick');result.className='dev-result bad';result.innerHTML='✗ La bonne réponse est <strong>13,1 Mds$</strong>.';addWrong();btns.forEach(function(b){if(b.textContent.indexOf('13,1')!==-1)b.classList.add('reveal-correct');});}setTimeout(function(){document.getElementById('lock1').classList.add('hidden');document.getElementById('chart1').classList.add('unlocked');setTimeout(animateBars,400);},800);checkCelebration();}
-function devSlider(){var card=document.getElementById('dev2');if(card.dataset.answered)return;card.dataset.answered='true';var val=parseInt(document.getElementById('streamSlider').value),result=document.getElementById('dev2result');document.getElementById('streamSlider').disabled=true;var diff=Math.abs(val-70);if(diff<=5){result.className='dev-result good';result.innerHTML='✓ Impressionnant ! Le streaming pèse aujourd\'hui <strong>70%</strong> des revenus globaux. Cela a totalement redéfini la création : les artistes doivent capter l\'attention dans les 3 premières secondes pour éviter le "skip" et générer des revenus !';addScore();fireConfetti(card.querySelector('.dev-validate-btn'));}else if(diff<=15){result.className='dev-result close';result.innerHTML='≈ Pas loin ! La réponse est <strong>70%</strong>.';addWrong();}else{result.className='dev-result bad';result.innerHTML='✗ La réponse est <strong>70%</strong> !';addWrong();}setTimeout(function(){document.getElementById('lock2').classList.add('hidden');document.getElementById('chart2').classList.add('unlocked');},800);checkCelebration();}
+function devSlider(){var card=document.getElementById('dev2');if(card.dataset.answered)return;card.dataset.answered='true';var val=parseInt(document.getElementById('streamSlider').value),result=document.getElementById('dev2result');document.getElementById('streamSlider').disabled=true;var diff=Math.abs(val-70);if(diff<=5){result.className='dev-result good';result.innerHTML='✓ Impressionnant ! Le streaming = <strong>70%</strong> !';addScore();fireConfetti(card.querySelector('.dev-validate-btn'));}else if(diff<=15){result.className='dev-result close';result.innerHTML='≈ Pas loin ! La réponse est <strong>70%</strong>.';addWrong();}else{result.className='dev-result bad';result.innerHTML='✗ La réponse est <strong>70%</strong> !';addWrong();}setTimeout(function(){document.getElementById('lock2').classList.add('hidden');document.getElementById('chart2').classList.add('unlocked');},800);checkCelebration();}
 function devMarket(choice,btn){var card=document.getElementById('dev3');if(card.dataset.answered)return;card.dataset.answered='true';var result=document.getElementById('dev3result'),btns=card.querySelectorAll('.dev-btn');btns.forEach(function(b){b.classList.add('disabled');});if(choice==='cn'){btn.classList.add('correct-pick');result.className='dev-result good';result.innerHTML='✓ Exact ! La Chine : +20% de croissance.';addScore();fireConfetti(btn);}else{btn.classList.add('wrong-pick');result.className='dev-result bad';result.innerHTML='✗ C\'est la <strong>Chine</strong> ! +20% de croissance.';addWrong();btns.forEach(function(b){if(b.textContent.indexOf('Chine')!==-1)b.classList.add('reveal-correct');});}checkCelebration();}
 
-function votePlatform(name){if(userVote)return;userVote=name;pollVotes[name]=(pollVotes[name]||0)+1;var total=0;for(var k in pollVotes)total+=pollVotes[k];var container=document.getElementById('poll-results'),entries=[];for(var key in pollVotes)entries.push([key,pollVotes[key]]);entries.sort(function(a,b){return b[1]-a[1];});var html='';entries.forEach(function(item){var pct=Math.round(item[1]/total*100),isMine=item[0]===name;html+='<div style="margin-bottom:10px;display:flex;align-items:center;gap:12px"><div style="width:120px;font-size:14px">'+item[0]+'</div><div style="flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:26px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+(isMine?'var(--green)':'rgba(141,184,36,0.3)')+';border-radius:4px;transition:width 1s;display:flex;align-items:center;padding-left:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--bg2)">'+pct+'%</div></div></div>';});container.innerHTML=html;document.getElementById('poll-options').style.display='none';container.style.display='block';var voted=document.getElementById('poll-voted');voted.textContent='Vote : '+name+' · '+total+' réponses';voted.style.display='block';showToast('Vote enregistré !');}
+/* ═══ POLL ═══ */
+function votePlatform(name){if(userVote)return;userVote=name;pollVotes[name]=(pollVotes[name]||0)+1;var total=0;for(var k in pollVotes)total+=pollVotes[k];var container=document.getElementById('poll-results'),icons={Spotify:'','Apple Music':'','YouTube Music':'',Deezer:'','CD / Vinyle':'',Radio:''},entries=[];for(var key in pollVotes)entries.push([key,pollVotes[key]]);entries.sort(function(a,b){return b[1]-a[1];});var html='';entries.forEach(function(item){var pct=Math.round(item[1]/total*100),isMine=item[0]===name;html+='<div style="margin-bottom:10px;display:flex;align-items:center;gap:12px"><div style="width:120px;font-size:14px">'+(icons[item[0]]||'')+' '+item[0]+'</div><div style="flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:26px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+(isMine?'var(--green)':'rgba(141,184,36,0.3)')+';border-radius:4px;transition:width 1s;display:flex;align-items:center;padding-left:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--bg2)">'+pct+'%</div></div></div>';});container.innerHTML=html;document.getElementById('poll-options').style.display='none';container.style.display='block';var voted=document.getElementById('poll-voted');voted.textContent='✓ Vote : '+name+' · '+total+' réponses';voted.style.display='block';showToast('Vote enregistré ! '+(icons[name]||''));}
 
 function toggleAlgo(el){var w=el.classList.contains('active');document.querySelectorAll('.algo-step').forEach(function(s){s.classList.remove('active');});if(!w)el.classList.add('active');}
 
-var reactionFBs={reveal:'La réalité est souvent cachée derrière une interface simple.',confirm:'Le sujet est de plus en plus connu.',nuance:'La nuance = début de la pensée critique !',skeptic:'Le scepticisme est sain ! Approfondissez les sources.'};
-function pickReaction(el,key){document.querySelectorAll('#reaction-opts .quiz-opt').forEach(function(o){o.classList.remove('selected');});el.classList.add('selected');var fb=document.getElementById('reaction-fb');fb.textContent=reactionFBs[key];fb.className='quiz-feedback visible';showToast('Réponse enregistrée');}
+var reactionFBs={reveal:' La réalité est souvent cachée derrière une interface simple.',confirm:' Le sujet est de plus en plus connu.',nuance:' La nuance = début de la pensée critique !',skeptic:' Le scepticisme est sain ! Approfondissez les sources.'};
+function pickReaction(el,key){document.querySelectorAll('#reaction-opts .quiz-opt').forEach(function(o){o.classList.remove('selected');});el.classList.add('selected');var fb=document.getElementById('reaction-fb');fb.textContent=reactionFBs[key];fb.className='quiz-feedback visible';showToast('Merci !');}
 
-var profileData=[{title:'L\'Auditeur Algorithmique',desc:'Vous laissez les algorithmes guider vos écoutes. Mais qui tire les ficelles ?',cond:function(s){return s.algo>=2;}},{title:'L\'Auditeur Intensif',desc:'Vous aimez ce que vous aimez, point. L\'algorithme vous connaît-il vraiment ?',cond:function(s){return s.loop>=1&&s.algo>=1;}},{title:'L\'Explorateur Autonome',desc:'Vous construisez votre propre culture musicale. Profil rare.',cond:function(s){return s.active>=2;}},{title:'L\'Auditeur Critique',desc:'Vous utilisez les plateformes avec méfiance. C\'est ce que notre webdoc encourage.',cond:function(){return true;}}];
+var profileData=[{emoji:'',title:'L\'Auditeur Algorithmique',desc:'Vous laissez les algorithmes guider vos écoutes. Mais qui tire les ficelles ?',cond:function(s){return s.algo>=2;}},{emoji:'',title:'L\'Auditeur Intensif',desc:'Vous aimez ce que vous aimez, point. L\'algorithme vous connaît-il vraiment ?',cond:function(s){return s.loop>=1&&s.algo>=1;}},{emoji:'',title:'L\'Explorateur Autonome',desc:'Vous construisez votre propre culture musicale. Profil rare.',cond:function(s){return s.active>=2;}},{emoji:'',title:'L\'Auditeur Critique',desc:'Vous utilisez les plateformes avec méfiance. C\'est ce que notre webdoc encourage.',cond:function(){return true;}}];
 function scoreQ(el,qNum,type){if(answeredQ[qNum])return;answeredQ[qNum]=type;el.classList.add('selected');if(type==='algo'||type==='trust')scores.algo++;if(type==='active'||type==='suspicious'||type==='ignore')scores.active++;if(type==='loop')scores.loop++;showToast('Question '+qNum+'/3 ✓');if(Object.keys(answeredQ).length===3)revealProfile();}
-function revealProfile(){var profile=profileData[0];for(var i=0;i<profileData.length;i++){if(profileData[i].cond(scores)){profile=profileData[i];break;}}var name=visitorName?visitorName+', vous êtes : ':'Vous êtes : ';document.getElementById('profile-title').textContent=name+profile.title;document.getElementById('profile-desc').textContent=profile.desc;var el=document.getElementById('profile-reveal');el.classList.add('show');fireConfetti(el);showToast('Profil révélé !');el.scrollIntoView({behavior:'smooth',block:'center'});}
+function revealProfile(){var profile=profileData[0];for(var i=0;i<profileData.length;i++){if(profileData[i].cond(scores)){profile=profileData[i];break;}}document.getElementById('profile-emoji').textContent=profile.emoji;var name=visitorName?visitorName+', vous êtes : ':'Vous êtes : ';document.getElementById('profile-title').textContent=name+profile.title;document.getElementById('profile-desc').textContent=profile.desc;var el=document.getElementById('profile-reveal');el.classList.add('show');fireConfetti(el);showToast(' Profil révélé !');el.scrollIntoView({behavior:'smooth',block:'center'});}
 
-function revealTaste(btn){var reveal=btn.nextElementSibling,isOpen=reveal.classList.contains('open');reveal.classList.toggle('open');btn.textContent=isOpen?'Ses goûts musicaux':'Cacher';if(!isOpen)fireConfetti(btn);}
+function revealTaste(btn){var reveal=btn.nextElementSibling,isOpen=reveal.classList.contains('open');reveal.classList.toggle('open');btn.textContent=isOpen?' Ses goûts musicaux':' Cacher';if(!isOpen)fireConfetti(btn);}
+
+function loadVideo(){var url=document.getElementById('url-input').value.trim();if(!url)return;var container=document.getElementById('videoContainer'),embedUrl=url,yt=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);if(yt)embedUrl='https://www.youtube.com/embed/'+yt[1]+'?autoplay=1';var vim=url.match(/vimeo\.com\/(\d+)/);if(vim)embedUrl='https://player.vimeo.com/video/'+vim[1]+'?autoplay=1';container.innerHTML='<iframe src="'+embedUrl+'" frameborder="0" allowfullscreen allow="autoplay; encrypted-media" style="position:absolute;inset:0;width:100%;height:100%;"></iframe>';}
+function loadFile(input){var file=input.files[0];if(!file)return;var url=URL.createObjectURL(file);document.getElementById('videoContainer').innerHTML='<video src="'+url+'" controls autoplay style="position:absolute;inset:0;width:100%;height:100%;background:#000;"></video>';}
+document.getElementById('url-input').addEventListener('keydown',function(e){if(e.key==='Enter')loadVideo();});
 
 function animateBars(){document.querySelectorAll('.bar-fill').forEach(function(bar){if(!bar.style.width||bar.style.width==='0px')bar.style.width=bar.dataset.width;});}
 var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');setTimeout(animateBars,300);}});},{threshold:0.12});
